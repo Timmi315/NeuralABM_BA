@@ -1,5 +1,7 @@
-# Neural parameter calibration of ODEs and SDEs
+# COPY OF Neural parameter calibration of ODEs and SDEs
 ### Thomas Gaskin
+### [Source](https://github.com/ThGaskin/NeuralABM)
+I had to copy the whole repository due to issues with git lfs.
 
 ---
 
