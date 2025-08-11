@@ -1,0 +1,28 @@
+# Inferred and true degree distribution
+degree_distribution:
+  based_on: degree_distribution_uni
+  dag_options:
+    define:
+      bins: 500
+      range:
+        - list: [[0, 20]]
+  x: x
+  y: y
+  yerr: yerr
+  hue: type
+  linestyle: [solid, dotted]
+  smooth_kwargs:
+    enabled: True
+    smoothing: 2
+  helpers:
+    set_limits:
+      x: [11, 15]
+      y: [ 0, ~ ]
+    set_labels:
+      x: Weighted degree $k$
+      y: ' '
+    set_legend:
+      custom_labels: [Inferred network, Transport network]
+      handlelength: 1.5
+  style:
+    figure.figsize: [!dag_result half_width, !dag_result third_width]

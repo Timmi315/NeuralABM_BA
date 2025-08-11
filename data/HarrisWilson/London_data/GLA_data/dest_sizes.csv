@@ -1,0 +1,50 @@
+Centre,Borough,Latitude,Longitude,Classification (LP2016),Comparison retail floorspace (sq.m),Convenience retail floorspace (sq.m),Service retail floorspace (sq.m),Total floorspace (sq.m.),Total floorspace (10^5 sq.m.)
+West End,Westminster/Camden,51.51509,-0.133648,International,"445,847","15,874","12,735","474,456",4.745
+Knightsbridge,Kensington and Chelsea/Westminster,51.49912,-0.164439,International,"134,832","1,600","2,200","138,632",1.386
+Bromley,Bromley,51.406025,0.013156,Metropolitan,"99,118","9,190","6,370","114,678",1.147
+Croydon,Croydon,51.376165,-0.098234,Metropolitan,"157,155","13,850","9,800","180,805",1.808
+Ealing,Ealing,51.525026,-0.3415,Metropolitan,"56,587","22,780","9,310","88,677",0.887
+Shepherds Bush,Hammersmith and Fulham,51.505203,-0.224475,Metropolitan,"126,471","10,190","4,390","141,051",1.411
+Wood Green,Haringey,51.596482,-0.108943,Metropolitan,"58,005","15,940","3,450","77,395",0.774
+Harrow,Harrow,51.580559,-0.341995,Metropolitan,"59,593","10,240","4,750","74,583",0.746
+Romford,Havering,51.577076,0.178319,Metropolitan,"116,818","27,950","9,510","154,278",1.543
+Uxbridge,Hillingdon,51.5485,-0.479611,Metropolitan,"62,752","11,266","5,350","79,368",0.794
+Hounslow,Hounslow,51.460922,-0.373149,Metropolitan,"50,722","17,170","3,330","71,222",0.712
+Kingston,Kingston upon Thames,51.41233,-0.300689,Metropolitan,"134,080","9,890","5,180","149,150",1.492
+Ilford,Redbridge,51.556619,0.076251,Metropolitan,"67,057","12,850","4,320","84,227",0.842
+Sutton,Sutton,51.361428,-0.193961,Metropolitan,"70,593","20,140","5,490","96,223",0.962
+Barking,Barking and Dagenham,51.536563,0.075766,Major,"17,772","13,470","3,710","34,952",0.350
+Edgware,Barnet/Harrow,51.615786,-0.262034,Major,"17,250","9,710","5,380","32,340",0.323
+Bexleyheath,Bexley,51.453341,0.13822,Major,"35,170","10,590","3,730","49,490",0.495
+Wembley,Brent,51.550501,-0.304841,Major,"17,830","5,870","4,670","28,370",0.284
+Kilburn,Brent/Camden,51.537076,-0.191135,Major,"18,118","11,070","6,900","36,088",0.361
+Orpington,Bromley,51.374843,0.094214,Major,"21,872","12,390","4,970","39,232",0.392
+Camden Town,Camden,51.539011,-0.142555,Major,"23,576","15,908","5,880","45,364",0.454
+Southall,Ealing,51.511073,-0.377232,Major,"12,650","12,414","2,940","28,004",0.280
+Enfield Town,Enfield,51.652299,-0.080712,Major,"38,149","8,540","3,820","50,509",0.505
+Eltham,Greenwich,51.451169,0.052639,Major,"24,367","7,920","3,180","35,467",0.355
+Woolwich,Greenwich,51.489475,0.067588,Major,"27,823","14,040","6,450","48,313",0.483
+Dalston,Hackney,51.547623,-0.070113,Major,"16,493","9,730","4,210","30,433",0.304
+Fulham,Hammersmith and Fulham,51.477343,-0.201682,Major,"11,701","12,410","3,940","28,051",0.281
+Hammersmith,Hammersmith and Fulham,51.491188,-0.223731,Major,"23,673","5,020","2,830","31,523",0.315
+Chiswick,Hounslow,51.487627,-0.267173,Major,"18,486","10,820","4,900","34,206",0.342
+Angel,Islington,51.534403,-0.10623,Major,"23,472","10,710","5,750","39,932",0.399
+Nags Head,Islington,51.516918,-0.068463,Major,"26,400","11,570","4,090","42,060",0.421
+Kensington High Street ,Kensington and Chelsea,51.499766,-0.196499,Major,"38,226","6,530","4,900","49,656",0.497
+King's Road (east),Kensington and Chelsea,51.485069,-0.174565,Major,"47,986","3,840","1,480","53,306",0.533
+Brixton,Lambeth,51.461279,-0.115615,Major,"27,870","13,500","3,820","45,190",0.452
+Streatham,Lambeth,51.427871,-0.124058,Major,"17,197","15,140","7,500","39,837",0.398
+Catford,Lewisham,51.444641,-0.020106,Major,"13,690","10,200","4,720","28,610",0.286
+Lewisham,Lewisham,51.441458,-0.011701,Major,"46,232","13,670","4,050","63,952",0.640
+Wimbledon,Merton,51.418339,-0.220629,Major,"37,508","11,380","4,370","53,258",0.533
+East Ham,Newham,51.528737,0.055472,Major,"20,480","11,660","2,430","34,570",0.346
+Stratford,Newham,51.550174,-0.003371,Metropolitan,"129,610","23,590","2,510","155,710",1.557
+Richmond,Richmond upon Thames,51.461311,-0.303742,Major,"31,727","7,950","4,640","44,317",0.443
+Peckham,Southwark,51.474191,-0.069137,Major,"28,440","20,134","6,160","54,734",0.547
+Canary Wharf,Tower Hamlets,51.505431,-0.023533,Major,"30,143","13,190","2,580","45,913",0.459
+Walthamstow,Waltham Forest,51.590177,-0.017344,Major,"32,505","18,910","6,450","57,865",0.579
+Clapham Junction,Wandsworth,51.465174,-0.170811,Major,"22,535","11,220","4,470","38,225",0.382
+Putney,Wandsworth,51.460574,-0.21718,Major,"22,066","8,530","5,430","36,026",0.360
+Tooting,Wandsworth,51.420845,-0.168075,Major,"18,547","16,040","3,370","37,957",0.380
+Wandsworth,Wandsworth,51.457072,-0.181782,Major,"24,679","13,070","3,280","41,029",0.410
+Queensway/ Westbourne Grove,Westminster/ Kensington and Chelsea,51.514628,-0.188005,Major,"18,676","5,140","3,530","27,346",0.273

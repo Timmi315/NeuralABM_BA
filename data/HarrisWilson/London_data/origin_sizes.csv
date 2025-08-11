@@ -1,0 +1,626 @@
+Ward name,Resulting origin sizes (21% of household budget) (10^8 £/a)
+City of London,0.89
+Barking and Dagenham - Abbey,0.36
+Barking and Dagenham - Alibon,0.28
+Barking and Dagenham - Becontree,0.36
+Barking and Dagenham - Chadwell Heath,0.29
+Barking and Dagenham - Eastbrook,0.32
+Barking and Dagenham - Eastbury,0.3
+Barking and Dagenham - Gascoigne,0.29
+Barking and Dagenham - Goresbrook,0.3
+Barking and Dagenham - Heath,0.29
+Barking and Dagenham - Longbridge,0.33
+Barking and Dagenham - Mayesbrook,0.27
+Barking and Dagenham - Parsloes,0.25
+Barking and Dagenham - River,0.28
+Barking and Dagenham - Thames,0.31
+Barking and Dagenham - Valence,0.3
+Barking and Dagenham - Village,0.31
+Barking and Dagenham - Whalebone,0.32
+Barnet - Brunswick Park,0.51
+Barnet - Burnt Oak,0.41
+Barnet - Childs Hill,0.69
+Barnet - Colindale,0.54
+Barnet - Coppetts,0.56
+Barnet - East Barnet,0.56
+Barnet - East Finchley,0.59
+Barnet - Edgware,0.5
+Barnet - Finchley Church End,0.63
+Barnet - Garden Suburb,0.74
+Barnet - Golders Green,0.57
+Barnet - Hale,0.51
+Barnet - Hendon,0.6
+Barnet - High Barnet,0.63
+Barnet - Mill Hill,0.64
+Barnet - Oakleigh,0.57
+Barnet - Totteridge,0.6
+Barnet - Underhill,0.51
+Barnet - West Finchley,0.61
+Barnet - West Hendon,0.5
+Barnet - Woodhouse,0.56
+Bexley - Barnehurst,0.36
+Bexley - Belvedere,0.36
+Bexley - Blackfen and Lamorbey,0.36
+Bexley - Blendon and Penhill,0.37
+Bexley - Brampton,0.36
+Bexley - Christchurch,0.39
+Bexley - Colyers,0.29
+Bexley - Crayford,0.4
+Bexley - Cray Meadows,0.36
+Bexley - Danson Park,0.37
+Bexley - East Wickham,0.33
+Bexley - Erith,0.37
+Bexley - Falconwood and Welling,0.35
+Bexley - Lesnes Abbey,0.34
+Bexley - Longlands,0.39
+Bexley - North End,0.31
+Bexley - Northumberland Heath,0.33
+Bexley - St. Mary's,0.42
+Bexley - St. Michael's,0.33
+Bexley - Sidcup,0.42
+Bexley - Thamesmead East,0.32
+Brent - Alperton,0.31
+Brent - Barnhill,0.42
+Brent - Brondesbury Park,0.46
+Brent - Dollis Hill,0.29
+Brent - Dudden Hill,0.39
+Brent - Fryent,0.34
+Brent - Harlesden,0.39
+Brent - Kensal Green,0.44
+Brent - Kenton,0.35
+Brent - Kilburn,0.56
+Brent - Mapesbury,0.5
+Brent - Northwick Park,0.35
+Brent - Preston,0.39
+Brent - Queens Park,0.56
+Brent - Queensbury,0.35
+Brent - Stonebridge,0.34
+Brent - Sudbury,0.37
+Brent - Tokyngton,0.4
+Brent - Welsh Harp,0.33
+Brent - Wembley Central,0.31
+Brent - Willesden Green,0.41
+Bromley - Bickley,0.63
+Bromley - Biggin Hill,0.35
+Bromley - Bromley Common and Keston,0.59
+Bromley - Bromley Town,0.72
+Bromley - Chelsfield and Pratts Bottom,0.56
+Bromley - Chislehurst,0.65
+Bromley - Clock House,0.64
+Bromley - Copers Cope,0.78
+Bromley - Cray Valley East,0.48
+Bromley - Cray Valley West,0.46
+Bromley - Crystal Palace,0.47
+Bromley - Darwin,0.19
+Bromley - Farnborough and Crofton,0.59
+Bromley - Hayes and Coney Hall,0.6
+Bromley - Kelsey and Eden Park,0.62
+Bromley - Mottingham and Chislehurst North,0.31
+Bromley - Orpington,0.53
+Bromley - Penge and Cator,0.61
+Bromley - Petts Wood and Knoll,0.57
+Bromley - Plaistow and Sundridge,0.57
+Bromley - Shortlands,0.44
+Bromley - West Wickham,0.57
+Camden - Belsize,0.72
+Camden - Bloomsbury,0.47
+Camden - Camden Town with Primrose Hill,0.62
+Camden - Cantelowes,0.44
+Camden - Fortune Green,0.54
+Camden - Frognal and Fitzjohns,0.7
+Camden - Gospel Oak,0.41
+Camden - Hampstead Town,0.73
+Camden - Haverstock,0.44
+Camden - Highgate,0.5
+Camden - Holborn and Covent Garden,0.59
+Camden - Kentish Town,0.51
+Camden - Kilburn,0.46
+Camden - King's Cross,0.36
+Camden - Regent's Park,0.46
+Camden - St. Pancras and Somers Town,0.43
+Camden - Swiss Cottage,0.72
+Camden - West Hampstead,0.59
+Croydon - Addiscombe,0.61
+Croydon - Ashburton,0.46
+Croydon - Bensham Manor,0.44
+Croydon - Broad Green,0.49
+Croydon - Coulsdon East,0.45
+Croydon - Coulsdon West,0.5
+Croydon - Croham,0.63
+Croydon - Fairfield,0.72
+Croydon - Fieldway,0.23
+Croydon - Heathfield,0.47
+Croydon - Kenley,0.55
+Croydon - New Addington,0.24
+Croydon - Norbury,0.47
+Croydon - Purley,0.56
+Croydon - Sanderstead,0.49
+Croydon - Selhurst,0.52
+Croydon - Selsdon and Ballards,0.44
+Croydon - Shirley,0.47
+Croydon - South Norwood,0.6
+Croydon - Thornton Heath,0.49
+Croydon - Upper Norwood,0.53
+Croydon - Waddon,0.54
+Croydon - West Thornton,0.43
+Croydon - Woodside,0.51
+Ealing - Acton Central,0.51
+Ealing - Cleveland,0.52
+Ealing - Dormers Wells,0.27
+Ealing - Ealing Broadway,0.64
+Ealing - Ealing Common,0.56
+Ealing - East Acton,0.56
+Ealing - Elthorne,0.53
+Ealing - Greenford Broadway,0.43
+Ealing - Greenford Green,0.39
+Ealing - Hanger Hill,0.61
+Ealing - Hobbayne,0.42
+Ealing - Lady Margaret,0.28
+Ealing - Northfield,0.57
+Ealing - North Greenford,0.38
+Ealing - Northolt Mandeville,0.4
+Ealing - Northolt West End,0.35
+Ealing - Norwood Green,0.28
+Ealing - Perivale,0.41
+Ealing - South Acton,0.49
+Ealing - Southall Broadway,0.23
+Ealing - Southall Green,0.27
+Ealing - Southfield,0.67
+Ealing - Walpole,0.56
+Enfield - Bowes,0.42
+Enfield - Bush Hill Park,0.49
+Enfield - Chase,0.44
+Enfield - Cockfosters,0.5
+Enfield - Edmonton Green,0.38
+Enfield - Enfield Highway,0.37
+Enfield - Enfield Lock,0.43
+Enfield - Grange,0.53
+Enfield - Haselbury,0.36
+Enfield - Highlands,0.53
+Enfield - Jubilee,0.35
+Enfield - Lower Edmonton,0.37
+Enfield - Palmers Green,0.47
+Enfield - Ponders End,0.35
+Enfield - Southbury,0.41
+Enfield - Southgate,0.53
+Enfield - Southgate Green,0.47
+Enfield - Town,0.55
+Enfield - Turkey Street,0.33
+Enfield - Upper Edmonton,0.38
+Enfield - Winchmore Hill,0.53
+Greenwich - Abbey Wood,0.41
+Greenwich - Blackheath Westcombe,0.65
+Greenwich - Charlton,0.48
+Greenwich - Coldharbour and New Eltham,0.43
+Greenwich - Eltham North,0.48
+Greenwich - Eltham South,0.41
+Greenwich - Eltham West,0.34
+Greenwich - Glyndon,0.46
+Greenwich - Greenwich West,0.81
+Greenwich - Kidbrooke with Hornfair,0.45
+Greenwich - Middle Park and Sutcliffe,0.43
+Greenwich - Peninsula,0.68
+Greenwich - Plumstead,0.42
+Greenwich - Shooters Hill,0.45
+Greenwich - Thamesmead Moorings,0.51
+Greenwich - Woolwich Common,0.44
+Greenwich - Woolwich Riverside,0.61
+Hackney - Brownswood,0.53
+Hackney - Cazenove,0.39
+Hackney - Chatham,0.42
+Hackney - Clissold,0.5
+Hackney - Dalston,0.56
+Hackney - De Beauvoir,0.57
+Hackney - Hackney Central,0.43
+Hackney - Hackney Downs,0.42
+Hackney - Haggerston,0.53
+Hackney - Hoxton,0.58
+Hackney - King's Park,0.31
+Hackney - Leabridge,0.41
+Hackney - Lordship,0.39
+Hackney - New River,0.34
+Hackney - Queensbridge,0.46
+Hackney - Springfield,0.31
+Hackney - Stoke Newington Central,0.48
+Hackney - Victoria,0.45
+Hackney - Wick,0.35
+Hammersmith and Fulham - Addison,0.55
+Hammersmith and Fulham - Askew,0.52
+Hammersmith and Fulham - Avonmore and Brook Green,0.55
+Hammersmith and Fulham - College Park and Old Oak,0.25
+Hammersmith and Fulham - Fulham Broadway,0.47
+Hammersmith and Fulham - Fulham Reach,0.43
+Hammersmith and Fulham - Hammersmith Broadway,0.46
+Hammersmith and Fulham - Munster,0.53
+Hammersmith and Fulham - North End,0.47
+Hammersmith and Fulham - Palace Riverside,0.38
+Hammersmith and Fulham - Parsons Green and Walham,0.57
+Hammersmith and Fulham - Ravenscourt Park,0.5
+Hammersmith and Fulham - Sands End,0.64
+Hammersmith and Fulham - Shepherd's Bush Green,0.45
+Hammersmith and Fulham - Town,0.51
+Hammersmith and Fulham - Wormholt and White City,0.35
+Haringey - Alexandra,0.49
+Haringey - Bounds Green,0.43
+Haringey - Bruce Grove,0.38
+Haringey - Crouch End,0.66
+Haringey - Fortis Green,0.54
+Haringey - Harringay,0.45
+Haringey - Highgate,0.58
+Haringey - Hornsey,0.48
+Haringey - Muswell Hill,0.5
+Haringey - Noel Park,0.36
+Haringey - Northumberland Park,0.32
+Haringey - St. Ann's,0.38
+Haringey - Seven Sisters,0.42
+Haringey - Stroud Green,0.5
+Haringey - Tottenham Green,0.4
+Haringey - Tottenham Hale,0.39
+Haringey - West Green,0.35
+Haringey - White Hart Lane,0.28
+Haringey - Woodside,0.38
+Harrow - Belmont,0.33
+Harrow - Canons,0.45
+Harrow - Edgware,0.27
+Harrow - Greenhill,0.43
+Harrow - Harrow on the Hill,0.4
+Harrow - Harrow Weald,0.33
+Harrow - Hatch End,0.37
+Harrow - Headstone North,0.34
+Harrow - Headstone South,0.35
+Harrow - Kenton East,0.24
+Harrow - Kenton West,0.28
+Harrow - Marlborough,0.33
+Harrow - Pinner,0.4
+Harrow - Pinner South,0.41
+Harrow - Queensbury,0.27
+Harrow - Rayners Lane,0.33
+Harrow - Roxbourne,0.32
+Harrow - Roxeth,0.29
+Harrow - Stanmore Park,0.39
+Harrow - Wealdstone,0.28
+Harrow - West Harrow,0.33
+Havering - Brooklands,0.52
+Havering - Cranham,0.47
+Havering - Elm Park,0.4
+Havering - Emerson Park,0.44
+Havering - Gooshays,0.39
+Havering - Hacton,0.42
+Havering - Harold Wood,0.47
+Havering - Havering Park,0.38
+Havering - Heaton,0.35
+Havering - Hylands,0.44
+Havering - Mawneys,0.41
+Havering - Pettits,0.45
+Havering - Rainham and Wennington,0.38
+Havering - Romford Town,0.6
+Havering - St. Andrew's,0.47
+Havering - South Hornchurch,0.4
+Havering - Squirrel's Heath,0.51
+Havering - Upminster,0.53
+Hillingdon - Barnhill,0.3
+Hillingdon - Botwell,0.38
+Hillingdon - Brunel,0.36
+Hillingdon - Cavendish,0.42
+Hillingdon - Charville,0.34
+Hillingdon - Eastcote and East Ruislip,0.52
+Hillingdon - Harefield,0.25
+Hillingdon - Heathrow Villages,0.33
+Hillingdon - Hillingdon East,0.37
+Hillingdon - Ickenham,0.42
+Hillingdon - Manor,0.42
+Hillingdon - Northwood,0.48
+Hillingdon - Northwood Hills,0.45
+Hillingdon - Pinkwell,0.32
+Hillingdon - South Ruislip,0.41
+Hillingdon - Townfield,0.33
+Hillingdon - Uxbridge North,0.53
+Hillingdon - Uxbridge South,0.36
+Hillingdon - West Drayton,0.43
+Hillingdon - West Ruislip,0.47
+Hillingdon - Yeading,0.34
+Hillingdon - Yiewsley,0.37
+Hounslow - Bedfont,0.34
+Hounslow - Brentford,0.5
+Hounslow - Chiswick Homefields,0.53
+Hounslow - Chiswick Riverside,0.54
+Hounslow - Cranford,0.28
+Hounslow - Feltham North,0.3
+Hounslow - Feltham West,0.42
+Hounslow - Hanworth,0.3
+Hounslow - Hanworth Park,0.33
+Hounslow - Heston Central,0.28
+Hounslow - Heston East,0.3
+Hounslow - Heston West,0.25
+Hounslow - Hounslow Central,0.43
+Hounslow - Hounslow Heath,0.35
+Hounslow - Hounslow South,0.34
+Hounslow - Hounslow West,0.31
+Hounslow - Isleworth,0.37
+Hounslow - Osterley and Spring Grove,0.44
+Hounslow - Syon,0.48
+Hounslow - Turnham Green,0.54
+Islington - Barnsbury,0.56
+Islington - Bunhill,0.77
+Islington - Caledonian,0.49
+Islington - Canonbury,0.5
+Islington - Clerkenwell,0.64
+Islington - Finsbury Park,0.5
+Islington - Highbury East,0.57
+Islington - Highbury West,0.75
+Islington - Hillrise,0.43
+Islington - Holloway,0.58
+Islington - Junction,0.51
+Islington - Mildmay,0.52
+Islington - St. George's,0.5
+Islington - St. Mary's,0.58
+Islington - St. Peter's,0.57
+Islington - Tollington,0.51
+Kensington and Chelsea - Abingdon,0.64
+Kensington and Chelsea - Brompton,0.8
+Kensington and Chelsea - Campden,0.62
+Kensington and Chelsea - Colville,0.42
+Kensington and Chelsea - Courtfield,0.71
+Kensington and Chelsea - Cremorne,0.4
+Kensington and Chelsea - Earl's Court,0.5
+Kensington and Chelsea - Golborne,0.29
+Kensington and Chelsea - Hans Town,0.78
+Kensington and Chelsea - Holland,0.58
+Kensington and Chelsea - Norland,0.47
+Kensington and Chelsea - Notting Barns,0.33
+Kensington and Chelsea - Pembridge,0.49
+Kensington and Chelsea - Queen's Gate,0.76
+Kensington and Chelsea - Redcliffe,0.59
+Kensington and Chelsea - Royal Hospital,0.55
+Kensington and Chelsea - St. Charles,0.32
+Kensington and Chelsea - Stanley,0.53
+Kingston upon Thames - Alexandra,0.3
+Kingston upon Thames - Berrylands,0.38
+Kingston upon Thames - Beverley,0.36
+Kingston upon Thames - Canbury,0.54
+Kingston upon Thames - Chessington North and Hook,0.27
+Kingston upon Thames - Chessington South,0.33
+Kingston upon Thames - Coombe Hill,0.36
+Kingston upon Thames - Coombe Vale,0.34
+Kingston upon Thames - Grove,0.47
+Kingston upon Thames - Norbiton,0.3
+Kingston upon Thames - Old Malden,0.32
+Kingston upon Thames - St. James,0.3
+Kingston upon Thames - St. Mark's,0.44
+Kingston upon Thames - Surbiton Hill,0.42
+Kingston upon Thames - Tolworth and Hook Rise,0.31
+Kingston upon Thames - Tudor,0.39
+Lambeth - Bishop's,0.43
+Lambeth - Brixton Hill,0.56
+Lambeth - Clapham Common,0.6
+Lambeth - Clapham Town,0.62
+Lambeth - Coldharbour,0.5
+Lambeth - Ferndale,0.57
+Lambeth - Gipsy Hill,0.5
+Lambeth - Herne Hill,0.59
+Lambeth - Knight's Hill,0.48
+Lambeth - Larkhall,0.61
+Lambeth - Oval,0.63
+Lambeth - Prince's,0.6
+Lambeth - St. Leonard's,0.56
+Lambeth - Stockwell,0.48
+Lambeth - Streatham Hill,0.53
+Lambeth - Streatham South,0.42
+Lambeth - Streatham Wells,0.52
+Lambeth - Thornton,0.49
+Lambeth - Thurlow Park,0.53
+Lambeth - Tulse Hill,0.51
+Lambeth - Vassall,0.52
+Lewisham - Bellingham,0.42
+Lewisham - Blackheath,0.64
+Lewisham - Brockley,0.65
+Lewisham - Catford South,0.48
+Lewisham - Crofton Park,0.57
+Lewisham - Downham,0.41
+Lewisham - Evelyn,0.48
+Lewisham - Forest Hill,0.58
+Lewisham - Grove Park,0.48
+Lewisham - Ladywell,0.49
+Lewisham - Lee Green,0.57
+Lewisham - Lewisham Central,0.68
+Lewisham - New Cross,0.48
+Lewisham - Perry Vale,0.56
+Lewisham - Rushey Green,0.49
+Lewisham - Sydenham,0.56
+Lewisham - Telegraph Hill,0.54
+Lewisham - Whitefoot,0.41
+Merton - Abbey,0.45
+Merton - Cannon Hill,0.31
+Merton - Colliers Wood,0.37
+Merton - Cricket Green,0.28
+Merton - Dundonald,0.43
+Merton - Figge's Marsh,0.3
+Merton - Graveney,0.27
+Merton - Hillside,0.48
+Merton - Lavender Fields,0.3
+Merton - Longthornton,0.29
+Merton - Lower Morden,0.28
+Merton - Merton Park,0.37
+Merton - Pollards Hill,0.27
+Merton - Ravensbury,0.27
+Merton - Raynes Park,0.46
+Merton - St. Helier,0.29
+Merton - Trinity,0.44
+Merton - Village,0.48
+Merton - West Barnes,0.36
+Merton - Wimbledon Park,0.48
+Newham - Beckton,0.41
+Newham - Boleyn,0.32
+Newham - Canning Town North,0.36
+Newham - Canning Town South,0.48
+Newham - Custom House,0.34
+Newham - East Ham Central,0.31
+Newham - East Ham North,0.25
+Newham - East Ham South,0.34
+Newham - Forest Gate North,0.41
+Newham - Forest Gate South,0.43
+Newham - Green Street East,0.28
+Newham - Green Street West,0.27
+Newham - Little Ilford,0.33
+Newham - Manor Park,0.31
+Newham - Plaistow North,0.33
+Newham - Plaistow South,0.37
+Newham - Royal Docks,0.42
+Newham - Stratford and New Town,0.89
+Newham - Wall End,0.3
+Newham - West Ham,0.37
+Redbridge - Aldborough,0.41
+Redbridge - Barkingside,0.37
+Redbridge - Bridge,0.4
+Redbridge - Chadwell,0.42
+Redbridge - Church End,0.49
+Redbridge - Clayhall,0.36
+Redbridge - Clementswood,0.3
+Redbridge - Cranbrook,0.33
+Redbridge - Fairlop,0.41
+Redbridge - Fullwell,0.37
+Redbridge - Goodmayes,0.31
+Redbridge - Hainault,0.36
+Redbridge - Loxford,0.31
+Redbridge - Mayfield,0.33
+Redbridge - Monkhams,0.46
+Redbridge - Newbury,0.4
+Redbridge - Roding,0.42
+Redbridge - Seven Kings,0.35
+Redbridge - Snaresbrook,0.52
+Redbridge - Valentines,0.37
+Redbridge - Wanstead,0.45
+Richmond upon Thames - Barnes,0.52
+Richmond upon Thames - East Sheen,0.5
+Richmond upon Thames - Fulwell and Hampton Hill,0.46
+"Richmond upon Thames - Ham, Petersham & Richmond Riverside",0.44
+Richmond upon Thames - Hampton,0.43
+Richmond upon Thames - Hampton North,0.34
+Richmond upon Thames - Hampton Wick,0.48
+Richmond upon Thames - Heathfield,0.31
+Richmond upon Thames - Kew,0.57
+Richmond upon Thames - Mortlake and Barnes Common,0.54
+Richmond upon Thames - North Richmond,0.53
+Richmond upon Thames - St. Margarets & North Twickenham,0.53
+Richmond upon Thames - South Richmond,0.61
+Richmond upon Thames - South Twickenham,0.46
+Richmond upon Thames - Teddington,0.51
+Richmond upon Thames - Twickenham Riverside,0.54
+Richmond upon Thames - West Twickenham,0.42
+Richmond upon Thames - Whitton,0.35
+Southwark - Brunswick Park,0.44
+Southwark - Camberwell Green,0.43
+Southwark - Cathedrals,0.68
+Southwark - Chaucer,0.57
+Southwark - College,0.48
+Southwark - East Dulwich,0.56
+Southwark - East Walworth,0.34
+Southwark - Faraday,0.35
+Southwark - Grange,0.67
+Southwark - Livesey,0.4
+Southwark - Newington,0.52
+Southwark - Nunhead,0.43
+Southwark - Peckham,0.32
+Southwark - Peckham Rye,0.54
+Southwark - Riverside,0.72
+Southwark - Rotherhithe,0.54
+Southwark - South Bermondsey,0.39
+Southwark - South Camberwell,0.46
+Southwark - Surrey Docks,0.62
+Southwark - The Lane,0.54
+Southwark - Village,0.58
+Sutton - Beddington North,0.34
+Sutton - Beddington South,0.31
+Sutton - Belmont,0.42
+Sutton - Carshalton Central,0.39
+Sutton - Carshalton South and Clockhouse,0.36
+Sutton - Cheam,0.4
+Sutton - Nonsuch,0.37
+Sutton - St. Helier,0.3
+Sutton - Stonecot,0.33
+Sutton - Sutton Central,0.42
+Sutton - Sutton North,0.34
+Sutton - Sutton South,0.43
+Sutton - Sutton West,0.42
+Sutton - The Wrythe,0.34
+Sutton - Wallington North,0.39
+Sutton - Wallington South,0.37
+Sutton - Wandle Valley,0.34
+Sutton - Worcester Park,0.42
+Tower Hamlets - Bethnal Green North,0.44
+Tower Hamlets - Bethnal Green South,0.4
+Tower Hamlets - Blackwall and Cubitt Town,0.88
+Tower Hamlets - Bow East,0.59
+Tower Hamlets - Bow West,0.46
+Tower Hamlets - Bromley-by-Bow,0.46
+Tower Hamlets - East India and Lansbury,0.38
+Tower Hamlets - Limehouse,0.56
+Tower Hamlets - Mile End and Globe Town,0.47
+Tower Hamlets - Mile End East,0.39
+Tower Hamlets - Millwall,1.28
+Tower Hamlets - St. Dunstan's and Stepney Green,0.47
+Tower Hamlets - St. Katherine's and Wapping,0.75
+Tower Hamlets - Shadwell,0.48
+Tower Hamlets - Spitalfields and Banglatown,0.45
+Tower Hamlets - Weavers,0.5
+Tower Hamlets - Whitechapel,0.63
+Waltham Forest - Cann Hall,0.34
+Waltham Forest - Cathall,0.3
+Waltham Forest - Chapel End,0.39
+Waltham Forest - Chingford Green,0.38
+Waltham Forest - Endlebury,0.36
+Waltham Forest - Forest,0.35
+Waltham Forest - Grove Green,0.42
+Waltham Forest - Hale End and Highams Park,0.38
+Waltham Forest - Hatch Lane,0.35
+Waltham Forest - High Street,0.43
+Waltham Forest - Higham Hill,0.33
+Waltham Forest - Hoe Street,0.42
+Waltham Forest - Larkswood,0.34
+Waltham Forest - Lea Bridge,0.38
+Waltham Forest - Leyton,0.37
+Waltham Forest - Leytonstone,0.4
+Waltham Forest - Markhouse,0.37
+Waltham Forest - Valley,0.33
+Waltham Forest - William Morris,0.38
+Waltham Forest - Wood Street,0.41
+Wandsworth - Balham,0.75
+Wandsworth - Bedford,0.63
+Wandsworth - Earlsfield,0.65
+Wandsworth - East Putney,0.78
+Wandsworth - Fairfield,0.71
+Wandsworth - Furzedown,0.5
+Wandsworth - Graveney,0.51
+Wandsworth - Latchmere,0.57
+Wandsworth - Nightingale,0.7
+Wandsworth - Northcote,0.75
+Wandsworth - Queenstown,0.72
+Wandsworth - Roehampton,0.4
+Wandsworth - St. Mary's Park,0.84
+Wandsworth - Shaftesbury,0.7
+Wandsworth - Southfields,0.76
+Wandsworth - Thamesfield,0.86
+Wandsworth - Tooting,0.48
+Wandsworth - Wandsworth Common,0.62
+Wandsworth - West Hill,0.59
+Wandsworth - West Putney,0.61
+Westminster - Abbey Road,0.65
+Westminster - Bayswater,0.62
+Westminster - Bryanston and Dorset Square,0.82
+Westminster - Churchill,0.44
+Westminster - Church Street,0.27
+Westminster - Harrow Road,0.4
+Westminster - Hyde Park,0.79
+Westminster - Knightsbridge and Belgravia,1.13
+Westminster - Lancaster Gate,0.77
+Westminster - Little Venice,0.53
+Westminster - Maida Vale,0.45
+Westminster - Marylebone High Street,0.83
+Westminster - Queen's Park,0.35
+Westminster - Regent's Park,0.69
+Westminster - St. James's,0.85
+Westminster - Tachbrook,0.51
+Westminster - Vincent Square,0.58
+Westminster - Warwick,0.57
+Westminster - Westbourne,0.38
+Westminster - West End,0.96

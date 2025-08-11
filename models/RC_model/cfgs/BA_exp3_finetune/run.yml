@@ -1,0 +1,48 @@
+perform_sweep: True
+parameter_space:
+  seed: !sweep
+    default: 1
+    range: [8]
+  num_epochs: 100
+  RC_model:
+    Data:
+      dt: 300
+      load_from_dir:
+        path: !sweep
+          default: data/RC_model/ds3-5minPRBS1-formatted.csv
+          values:
+            - data/RC_model/synth_muc_win_5Min_2000_PControl.csv
+            - data/RC_model/synth_muc_win_5Min_2000_rampup.csv
+            - data/RC_model/synth_muc_win_5Min_2000_TwoPointControl.csv
+            - data/RC_model/synth_muc_win_5Min_1680_PRBS.csv
+            - data/RC_model/synth_muc_win_5Min_2000_PControl_noised.csv
+            - data/RC_model/ds1_formatted.csv
+            - data/RC_model/ds2_5min_formatted.csv
+            - data/RC_model/ds3-5MinPRBS1-formatted.csv
+            - data/RC_model/genTest_data/#Uex_0.5#HeaWal_80000#FawSou_0.16#ZonLen_7#Wea_Berlin/_simulation.csv
+            - data/RC_model/genTest_data/#Uex_1.1#HeaWal_200000#FawSou_0.19#ZonLen_10#Wea_Brussels/_simulation.csv
+        csv_keys: [T_in, T_out, heatPower, HGloHor]
+        effWinArea: 1
+        subset: 1440
+  #      #csv_keys: [thermalZone.TAir, weaBus.TDryBul, totalHeatingPower.y, weaDat.weaBus.HGloHor]
+    NeuralNet:
+      pretrained: !sweep
+        default: data/RC_model/pretrained/lstm_100ep_1440lb_3l_20n_prbs.pth
+        values: 
+          - None
+          - data/RC_model/pretrained/mlp_100ep_288lb_3l_20n_prbs.pth
+          - data/RC_model/pretrained/lstm_100ep_288lb_3l_20n_prbs.pth
+          #- data/RC_model/pretrained/lstm_100ep_1440lb_3l_20n_prbs.pth
+          #- data/RC_model/pretrained/lstm_100ep_2880lb_3l_20n_prbs.pth
+          #- data/RC_model/pretrained/mlp_100ep_1440lb_3l_20n_prbs.pth   
+      type: lstm
+      learning_rate: 0.002
+      lookback: 288
+      batch_size: 1
+  #    lookback: 100 #amount of timesteps input for param estimation. has to be < than batch_size due to implementation.  
+    Training:
+      sample_size: 288
+      model_type: EffWin
+
+
+# compare opt vs lstm vs mlp in: ramped heat data, PRBS1, normal, gaussian noise, builda, ds2, ds3, ds1

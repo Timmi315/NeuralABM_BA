@@ -1,0 +1,75 @@
+Data:
+  model_type: RC
+  synthetic_data:
+    initial_conditions:
+      T_in: 291
+    store_raw_QSolar: true
+    effWinArea: 5 #[m2]
+    maxHeatingPower: 5000 #[W]
+    controller: PControl #PControl | TwoPointControl
+    T_min: 290 #[K]
+    T_max: 294 #[K]
+    num_steps: 3000
+    C: 7452000 # first entries taken from  Identifying suitable models for the heat dynamics of buildings: Peder Bacher, Henrik Madsen
+    R: 0.00529
+    C1: 3852000.0
+    R1: 0.000863
+    C2: 5004.0
+    R2: 0.0934
+    C3: 10512000.0
+    R3: 0.00454
+    #A_eff: 7.89
+
+  dt: 300
+
+# Settings for the neural network
+NeuralNet:
+  type: mlp # lstm | mlp | optimizer
+  lookback: 288 #amount of timesteps input for param estimation
+  num_layers: !is-positive-int 3
+  nodes_per_layer:
+    default: !is-positive-int 20
+  biases:
+    default: [0, 1]
+  activation_funcs:
+    default: sigmoid
+    layer_specific:
+      -1: abs
+  learning_rate: !is-positive 0.002
+  optimizer: Adam
+  prior:
+    distribution: uniform
+    parameters:
+      lower: 0
+      upper: 1
+
+# Settings for the training
+Training:
+  mode: predict # predict | generalize | single-input 
+  model_type: EffWin
+  batch_size: !is-positive-int 10
+  sample_size: !is-positive-int 288
+  loss_function:
+    name: MSELoss
+    kwargs:
+      reduction: sum
+  # parameters to learn are inferred from the model type
+  #true_parameters:
+    #C1: 4896000
+    #R1: 0.00531
+    #C2: 1112400
+    #R2: 0.000639 #optional dictionary. Parameters specified here are taken from here and not learned.
+  device: cpu
+  num_threads: ~
+
+  # Can scale parameters here
+  scaling_factors:
+    C: 10.0e6
+    R: 10.0e-3
+    C1: 10.0e6
+    R1: 10.0e-3
+    C2: 10.0e6
+    R2: 10.0e-3
+    C3: 10.0e6
+    R3: 10.0e-3
+    A_eff: 10

@@ -1,0 +1,45 @@
+perform_sweep: True
+parameter_space:
+  seed: !sweep
+    default: 1
+    range: [8]
+  num_epochs: 1000
+  RC_model:
+    Data:
+      dt: 900
+      model_type: TiThTe.Hidden
+      synthetic_data:
+        initial_conditions:
+          T_in: 292
+        store_raw_QSolar: false
+        effWinArea: 5.64
+        maxHeatingPower: 5000
+        controller: PControl #PControl | TwoPointControl
+        T_min: 290 #[K]
+        T_max: 294 #[K]
+        num_steps: !sweep
+          default: 1440
+          values: [144, 288, 576, 864] #1.5d, 3.0d, 6.0d, 9.0d
+        C1: 3852000.0
+        R1: 0.000863
+        C2: 5004.0
+        R2: 0.0934
+        C3: 10512000.0
+        R3: 0.00454
+
+    NeuralNet:
+      type: !sweep
+        default: lstm
+        values: [optimizer, mlp-single, mlp, lstm]
+      learning_rate: 0.002
+      lookback: 96
+    Training:
+      sample_size: 96
+      mode: predict
+      model_type: !sweep
+        default: RC
+        values: [RC, TiTh.Hidden, TiTe.Hidden, TiThTe.Hidden]
+
+
+# seed, data_length, NeuralNet.type, Training.model_type
+

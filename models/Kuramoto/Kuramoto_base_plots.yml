@@ -1,0 +1,465 @@
+---
+# ======================================================================================================================
+#  ╔╦╗╔═╗╔═╗╔═╗╦ ╦╦ ╔╦╗╔═╗
+#   ║║║╣ ╠╣ ╠═╣║ ║║  ║ ╚═╗
+#  ═╩╝╚═╝╚  ╩ ╩╚═╝╩═╝╩ ╚═╝
+# ======================================================================================================================
+# Meta operations, made available to all plots
+.meta_ops:
+  dag_options:
+    meta_operations:
+
+      # Select label and drop
+      .sel_with_drop:
+        - .sel: [!arg 0, !arg 1]
+          kwargs: {drop: True}
+
+      # Select index label and drop
+      .isel_with_drop:
+        - .isel: [!arg 0, !arg 1]
+          kwargs: {drop: True}
+
+      # Divide by median
+      divide_by_median:
+        - .median: [ !arg 0 , !arg 1 ]
+        - div: [ !arg 0, !dag_prev ]
+
+      # Negative exponential
+      neg_exp:
+        - mul: [!arg 0 , -1]
+        - np.exp: [!dag_prev ]
+
+      # Flattens a dataset, if required, over the batch and the seed dimension
+      # If no seed dimension present, simply returns the dataset
+      # This is useful since it allows datasets with and without a 'seed' dimension to be treated
+      # the same way
+      flatten:
+        - flatten_dims: [ !arg 0 ]
+          kwargs: { dims: { batch: [ seed, batch ] } }
+          allow_failure: True
+          fallback: !arg 0
+
+
+# Default style options, made available to all plots
+.default_style:
+  dag_options:
+    define: &colors
+
+      # Make colors and page widths accessible across all plots
+      c_yellow: '#F5DDA9'
+      c_orange: '#EC9F7E'
+      c_red: '#ec7070'
+      c_pink: '#F8A6A6'
+      c_purple: '#A07CB0'
+      c_lightblue: '#97c3d0'
+      c_darkblue: '#2F7194'
+      c_lightgreen: '#AFD8BC'
+      c_darkgreen: '#48675A'
+      c_lightbrown: '#C6BFA2'
+      c_lightgrey: '#AFC1B9'
+      c_darkgrey: '#3D4244'
+
+      # Set the page width of the document to allow for easy integration
+      _page_width: 7.0
+
+      # These are available for all plots and can be used to adjust the figure size or generate new sizes as needed
+      full_width: !dag_tag _page_width
+      half_width:
+        - div: [!dag_tag _page_width, 2]
+      third_width:
+        - div: [!dag_tag _page_width, 3]
+      quarter_width:
+        - div: [!dag_tag _page_width, 4]
+      fifth_width:
+        - div: [!dag_tag _page_width, 5]
+      two_thirds_width:
+        - mul: [!dag_tag third_width, 2]
+
+  style:
+    text.usetex: False   # Set to 'True' to use latex
+    mathtext.fontset: cm
+    font.family: Helvetica
+    text.latex.preamble: \usepackage{amssymb} \usepackage{amsmath}
+
+    # Set the label fontsize
+    font.size: &fontsize 7
+    axes.titlesize: *fontsize
+    axes.labelsize: *fontsize
+    xtick.labelsize: *fontsize
+    ytick.labelsize: *fontsize
+    legend.fontsize: *fontsize
+    grid.linewidth: 0.5
+    savefig.bbox: tight
+    axes.grid:          True
+    axes.spines.top:    False
+    axes.spines.right:  False
+
+  helpers:
+    save_figure:
+      dpi: 900
+  file_ext: pdf
+
+.default_color_cycler:
+  style:
+    axes.prop_cycle: !format
+      fstr: "cycler('color', ['{colors[c_darkblue]:}',
+                              '{colors[c_red]:}',
+                              'black',
+                              '{colors[c_yellow]:}',
+                              '{colors[c_darkgreen]:}',
+                              '{colors[c_lightblue]:}',
+                              '{colors[c_lightbrown]:}',
+                              '{colors[c_orange]:}',
+                              '{colors[c_lightgreen]:}',
+                              '{colors[c_darkgrey]:}',
+                              '{colors[c_pink]:}',
+                              '{colors[c_purple]:}',
+                              '{colors[c_lightgrey]:}'
+                              ])"
+      colors:
+        <<: *colors
+
+.cycler_blue_red:
+  style:
+    axes.prop_cycle: !format
+      fstr: "cycler('color', ['{colors[c_darkblue]:}', '{colors[c_red]:}' ])"
+      colors:
+        <<: *colors
+
+.cycler_reds:
+  style:
+    axes.prop_cycle: !format
+      fstr: "cycler('color', ['{colors[c_red]:}', 'black', '{colors[c_orange]}'])"
+      colors:
+        <<: *colors
+
+.cycler_high_contrast:
+  style:
+    axes.prop_cycle: !format
+      fstr: "cycler('color', ['black', '{colors[c_darkgreen]:}', '{colors[c_pink]:}', '{colors[c_lightgreen]}'])"
+      colors:
+        <<: *colors
+
+.cycler_black_yellow:
+  style:
+    axes.prop_cycle: !format
+      fstr: "cycler('color', ['black', '{colors[c_yellow]:}'])"
+      colors:
+        <<: *colors
+
+.style_error_cmap:
+  cmap:
+    from_values:
+      0: white
+      0.5: !dag_result c_yellow
+      1: !dag_result c_red
+
+.hlpr.no_labels:
+  helpers:
+    set_labels:
+      x: ' '
+      y: ' '
+# ======================================================================================================================
+#  ╔╦╗╔═╗╔╦╗╔═╗╦  ╔═╗╔╦╗╔═╗╔═╗
+#   ║ ║╣ ║║║╠═╝║  ╠═╣ ║ ║╣ ╚═╗
+#   ╩ ╚═╝╩ ╩╩  ╩═╝╩ ╩ ╩ ╚═╝╚═╝
+# ======================================================================================================================
+# -- Overloads ---------------------------------------------------------------------------------------------------------
+# Overload some configs to insert model-specific settings
+.creator.universe:
+  based_on:
+    - .creator.universe
+    - .default_style
+    - .default_color_cycler
+    - .dag.vis.disabled
+    - .meta_ops
+
+  dag_options:
+    select_path_prefix: &base_path data
+
+.creator.multiverse:
+  based_on:
+    - .creator.multiverse
+    - .default_style
+    - .default_color_cycler
+    - .dag.vis.disabled
+    - .meta_ops
+
+  select_and_combine:
+    base_path: *base_path
+
+
+# Base function for probability densities
+.plot.facet_grid.density:
+  based_on: .plot.facet_grid
+  kind: density
+
+# Base adjacency matrix plot: plots the edge weights (which lie in [0, 1]) in matrix form,
+# where the (1, 1) entry is in the upper left corner
+.adjacency_matrix:
+  based_on:
+    - .plot.facet_grid.pcolormesh
+    - .hlpr.no_labels
+    - .hlpr.ticks.x.hide
+    - .hlpr.ticks.y.hide
+  x: i
+  y: j
+  vmin: 0
+  vmax: 1
+  cmap:
+    from_values:
+      0: white
+      0.5: !dag_result c_yellow
+      1: !dag_result c_darkblue
+    continuous: true
+  cbar_kwargs:
+    label: Edge weight
+  style:
+    axes.grid: False
+    axes.spines.top: True
+    axes.spines.right: True
+    axes.linewidth: 0.5
+  helpers:
+    set_limits:
+      y: [ max, min ]
+      x: [ min, max ]
+
+# Base operations for calculating marginals of network property distributions
+.marginals:
+  based_on:
+    - .plot.facet_grid.density
+    - .cycler_blue_red
+#    - .hlpr.no_labels
+
+# ======================================================================================================================
+#  ╦ ╦╔╗╔╦╦  ╦╔═╗╦═╗╔═╗╔═╗  ╔═╗╦  ╔═╗╔╦╗╔═╗
+#  ║ ║║║║║╚╗╔╝║╣ ╠╦╝╚═╗║╣   ╠═╝║  ║ ║ ║ ╚═╗
+#  ╚═╝╝╚╝╩ ╚╝ ╚═╝╩╚═╚═╝╚═╝  ╩  ╩═╝╚═╝ ╩ ╚═╝
+# ======================================================================================================================
+loss:
+  based_on:
+    - .creator.universe
+    - .plot.facet_grid.line
+  select:
+    data: output_data/Loss
+  hue: kind
+  helpers:
+    set_labels:
+      y: Loss
+    set_scales:
+      y: log
+
+network:
+  based_on:
+    - .creator.universe
+    - .plot.graph
+  select:
+    graph_group: true_network
+  graph_creation:
+    at_time_idx: -1
+    edge_props: [_edge_weights]
+  graph_drawing:
+    positions:
+      model: spring
+      k: 20
+      seed: 10
+    nodes:
+      node_size:
+        from_property: degree
+        scale_to_interval: [1, 100]
+    edges:
+      width:
+        from_property: _edge_weights
+        scale_to_interval: [0, 1]
+
+# Degree distribution (universe plot)
+degree_distribution_uni:
+  based_on:
+    - .creator.universe
+    - .marginals
+  dag_options:
+    define:
+      bins: 100
+      range:
+        - list: [[0, 50]]
+  select:
+    # Select the predicted adjacency matrix
+    predictions:
+      path: output_data/predictions
+      transform:
+        - .sum: [!dag_prev , 'i']
+        - binned_nw_statistic: [!dag_prev ]
+          kwargs:
+            bins: !dag_tag bins
+            ranges: !dag_tag range
+
+    # Divide the loss by the median value: this prevents numerical underflow of very small values all being
+    # mapped to 1 under exp(-J)
+    probabilities:
+      path: output_data/Loss
+      transform:
+        - .sel_with_drop: [!dag_prev , { kind: Data loss}]
+        - divide_by_median: [!dag_prev , ['batch']]
+        - neg_exp: [ !dag_prev ]
+
+    true_data:
+      path: true_network/_degree_weighted
+      transform:
+        - .data: [!dag_prev ]
+        - hist: [!dag_prev ]
+          kwargs:
+            bins: !dag_tag bins
+            ranges: !dag_tag range
+            dim: vertex_idx
+            use_bins_as_coords: True
+
+  # Get the distribution statistics
+  transform:
+    - marginal_distribution: [!dag_tag predictions, !dag_tag probabilities, !dag_tag true_data]
+      tag: data
+  helpers:
+    set_limits:
+      y: [0, ~]
+
+# Plot the predicted and true degree triangle_distribution with uncertainty
+triangle_distribution_uni:
+  based_on: degree_distribution_uni
+  dag_options:
+    define:
+      range:
+        - list: [[0, 5]]
+  select:
+    predictions:
+      transform:
+        - .data: [!dag_prev ]
+        - triangles: [ !dag_prev  ]
+        - binned_nw_statistic: [!dag_prev ]
+          kwargs:
+            bins: !dag_tag bins
+            ranges: !dag_tag range
+    true_data:
+      path: true_network/_triangles_weighted
+      transform:
+        - .data: [!dag_prev ]
+        - hist: [!dag_prev ]
+          kwargs:
+            bins: !dag_tag bins
+            ranges: !dag_tag range
+            dim: vertex_idx
+            use_bins_as_coords: True
+  helpers:
+    set_labels:
+      x: Weighted node triangle count
+
+# ======================================================================================================================
+#  ╔╦╗╦ ╦╦ ╔╦╗╦╦  ╦╔═╗╦═╗╔═╗╔═╗  ╔═╗╦  ╔═╗╔╦╗╔═╗
+#  ║║║║ ║║  ║ ║╚╗╔╝║╣ ╠╦╝╚═╗║╣   ╠═╝║  ║ ║ ║ ╚═╗
+#  ╩ ╩╚═╝╩═╝╩ ╩ ╚╝ ╚═╝╩╚═╚═╝╚═╝  ╩  ╩═╝╚═╝ ╩ ╚═╝
+# ======================================================================================================================
+loss_mv:
+  based_on:
+    - .creator.multiverse
+    - .plot.facet_grid.line
+  select_and_combine:
+    fields:
+      data: output_data/Loss
+  hue: seed
+  col: kind
+  c: !dag_result c_darkblue
+  helpers:
+    set_legend:
+      use_legend: False
+    set_labels:
+      y: Loss
+    set_scales:
+      y: log
+
+# Degree distribution plot (multiverse)
+degree_distribution_mv:
+  based_on:
+    - .creator.multiverse
+    - .marginals
+  dag_options:
+    define:
+      bins: 120
+      range:
+        - list: [[0, 10]]
+  select_and_combine:
+    fields:
+
+      # Select the predicted adjacency matrix
+      predictions:
+        path: output_data/predictions
+        transform:
+          - .sum: [!dag_prev , 'i']
+          - binned_nw_statistic: [!dag_prev ]
+            kwargs:
+              bins: !dag_tag bins
+              ranges: !dag_tag range
+
+      # Divide the loss by the median value: this prevents numerical underflow of very small values all being
+      # mapped to 1 under exp(-J)
+      probabilities:
+        path: output_data/Loss
+        transform:
+          - .sel_with_drop: [!dag_prev , { kind: Data loss}]
+          - divide_by_median: [!dag_prev , ['batch']]
+          - neg_exp: [ !dag_prev ]
+
+      true_data:
+        path: true_network/_degree_weighted
+        transform:
+          - .data: [!dag_prev ]
+          - hist: [!dag_prev ]
+            kwargs:
+              bins: !dag_tag bins
+              ranges: !dag_tag range
+              dim: vertex_idx
+              use_bins_as_coords: True
+  # Get the distribution statistics
+  transform:
+    - flatten: [!dag_tag predictions]
+      tag: predictions_flattened
+    - flatten: [!dag_tag probabilities]
+      tag: probabilities_flattened
+    - .sel_with_drop: [!dag_tag true_data, {seed: 0}]
+      allow_failure: silent
+      fallback: !dag_tag true_data
+    - marginal_distribution: [!dag_tag predictions_flattened, !dag_tag probabilities_flattened, !dag_prev ]
+      kwargs:
+        y: 'mode'
+      tag: data
+  helpers:
+    set_limits:
+      y: [0, ~]
+
+# Plot a facet grid of the triangle distribution for different noise levels
+triangle_distribution_mv:
+  based_on: degree_distribution_mv
+  dag_options:
+    define:
+      range:
+        - list: [[0, 10]]
+  select_and_combine:
+    fields:
+      predictions:
+        transform:
+          - .data: [!dag_prev ]
+          - triangles: [ !dag_prev  ]
+          - binned_nw_statistic: [!dag_prev ]
+            kwargs:
+              bins: !dag_tag bins
+              ranges: !dag_tag range
+      true_data:
+        path: true_network/_triangles_weighted
+        transform:
+          - .data: [!dag_prev ]
+          - hist: [!dag_prev ]
+            kwargs:
+              bins: !dag_tag bins
+              ranges: !dag_tag range
+              dim: vertex_idx
+              use_bins_as_coords: True
+  helpers:
+    set_labels:
+      x: Weighted node triangle count

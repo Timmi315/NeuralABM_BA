@@ -1,0 +1,31 @@
+perform_sweep: True
+# model sweep config. Any parameter can be swept here.
+# For evaluation, all traversed samples are used for one marginalization.
+
+
+parameter_space:
+  seed: !sweep
+    default: 1
+    range: [120]
+  num_epochs: 10
+  RC_model:
+    Data:
+      dt: 300
+      load_from_dir:
+        #path: data/RC_model/MunichPI.csv
+        #path: data/RC_model/ds3-5MinPRBS1-formatted.csv
+        path: data/RC_model/ds2_5min_formatted.csv
+        effWinArea: 1
+        csv_keys: [T_in, T_out, heatPower, HGloHor]
+        subset: 144000
+    NeuralNet:   
+      type: mlp
+      optimizer: Adam
+      learning_rate: 0.002
+      lookback: 144
+  #    lookback: 100 #amount of timesteps input for param estimation. has to be < than batch_size due to implementation.  
+    Training:
+      batch_size: 100
+      model_type: EffWin
+      sample_size: 144
+

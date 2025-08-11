@@ -1,0 +1,22 @@
+perform_sweep: False
+parameter_space:
+  num_epochs: 100
+  RC_model:
+    Data:
+      dt: 300
+      load_from_dir:
+        path: data/RC_model/generalization_data
+        csv_keys: ["thermalZone.TAir", "weaBus.TDryBul", "totalHeatingPower.y", "weaDat.weaBus.HGloHor"]
+        effWinArea: 1
+        subset: 100000
+    NeuralNet:   
+      type: lstm
+      learning_rate: 0.002
+      lookback: 288 # 1 days
+
+    Training:
+      sample_size: 288
+      mode: generalize
+      batch_size: 1
+      model_type: EffWin
+

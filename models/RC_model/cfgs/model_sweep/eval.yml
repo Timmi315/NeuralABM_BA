@@ -1,0 +1,271 @@
+# Loss for each run
+loss:
+  based_on:
+    - .creator.multiverse
+  creator: multiverse
+  module: dantro.plot.funcs
+  plot_func: multiplot
+  select_and_combine:
+    fields:
+      loss_multi: loss
+  transform:
+    - print: [!dag_tag loss_multi]
+    - flatten_dims_except: [!dag_tag loss_multi, batch, uni]
+      tag: loss
+    - .coords: [!dag_prev ]
+    - getitem: [!dag_prev , batch]
+    - .data: [!dag_prev ]
+      tag: x
+  to_plot:
+    - function: plt.semilogy
+      args:
+        - !dag_result x
+        - !dag_result loss
+  compute_only: [] #something about multiplot not liking data input through that interface
+  alpha: 0.2
+  helpers:
+    set_labels:
+      x: Batch
+      y: Training loss
+    set_legend:
+      use_legend: False
+
+# Plot the predictions over time, colour-coded by loss
+predictions:
+  based_on:
+    - .creator.multiverse
+    - .plot.facet_grid.scatter
+  select_and_combine:
+    fields:
+      parameters:
+        path: parameters
+        transform: [.data]
+      loss:
+        path: loss
+        transform: [.data]
+  transform:
+    - broadcast_dims: [!dag_tag parameters, !dag_tag loss, [batch, parameter]]
+    - flatten_dims_except: [!dag_prev , [parameter, batch], sample]
+      tag: data
+  x: batch
+  y: x
+  hue: loss
+  col: parameter
+  marker: .
+  linewidths: 0          # Removes white outline
+  edgecolors: none       # No edge color
+  sharey: False # Seems to have no effect?
+  sharex: False
+  helpers:
+    set_limits:
+      x: [min, max]
+      y: [0, max] # Why is this necessary?
+  add_legend: False
+  norm:
+    name: LogNorm
+  cmap: &cmap
+    continuous: true
+    from_values:
+      0: !dag_result c_purple
+      0.5: !dag_result c_darkblue
+      1: !dag_result c_yellow
+
+# Plot the marginals together
+marginals_all:
+  based_on:
+    - .creator.multiverse
+    - .plot.facet_grid.density
+  select_and_combine:
+    fields:
+      parameters: parameters
+      loss: loss
+
+  transform:
+    # Divide the loss by the median to prevent numerical underflow
+    - .median: [!dag_tag loss, 'batch']
+    - div: [!dag_tag loss, !dag_prev ]
+    - neg_exp: [!dag_prev ]
+      tag: probabilities
+
+    # Flatten the prob and parameter samples into a single dimension
+    - flatten_dims_except: [!dag_tag probabilities , parameters, sample] # not executed?
+      tag: prob
+    - flatten_dims_except: [!dag_tag parameters , parameters, sample]
+      tag: params
+    - broadcast: [!dag_tag params, !dag_tag prob]
+
+    # Get the marginals along the parameters
+    - marginal_from_ds: [!dag_prev ]
+      kwargs:
+        x: x
+        y: loss
+        exclude_dim: [parameter]
+        bins: 250
+      tag: data
+  c: !dag_result c_darkblue
+  x: x
+  y: y
+  col: parameter
+  sharex: False
+  sharey: False
+
+
+# plot the simulation of the model using the predicted parameters and the residuals.
+model_pred:
+  based_on:
+    - .creator.multiverse
+  creator: multiverse
+  module: dantro.plot.funcs
+  plot_func: multiplot
+  select_and_combine:
+    fields:
+      parameters: parameters
+      loss: loss
+      model_type:
+        path: parameters
+        transform:
+          - .attrs
+          - getitem: [!dag_prev , model_type]
+      dt:
+        path: parameters
+        transform:
+          - .attrs
+          - getitem: [!dag_prev , dt]
+      rc_data:
+        path: RC_data
+        transform:
+          - getitem: [!dag_prev , 0]
+  transform:
+    # Divide the loss by the median to prevent numerical underflow
+    - .median: [!dag_tag loss, 'batch']
+    - div: [!dag_tag loss, !dag_prev ]
+    - neg_exp: [!dag_prev ]
+      tag: probabilities
+    # format probabilites into 1D-array and broadcast it with loss
+    - flatten_dims_except: [!dag_tag probabilities , parameters, sample]
+      tag: prob
+    - flatten_dims_except: [!dag_tag parameters , parameters, sample]
+      tag: params
+    - broadcast: [!dag_tag params, !dag_tag prob]
+
+    # Get the marginals along the parameters
+    - marginal_from_ds: [!dag_prev ]
+      kwargs:
+        x: x
+        y: loss
+        exclude_dim: [parameter]
+        bins: 250
+      tag: marginals
+    # simulate the model data
+    - simulate_model: !dag_prev 
+      kwargs:
+        model_type: !dag_tag model_type
+        dt: !dag_tag dt
+        rc_data: !dag_tag rc_data
+        mode: sim
+        horizon: 288
+      tag: data
+    # select time array from data
+    - .coords: [!dag_tag rc_data, time]
+    - mul: [!dag_prev , !dag_tag dt]
+    - select_first_uni_time_coords: [!dag_prev ]
+      tag: time_coords
+    #simulate model again, computing the delta
+    - simulate_model: !dag_tag marginals
+      kwargs:
+        model_type: !dag_tag model_type
+        dt: !dag_tag dt
+        rc_data: !dag_tag rc_data
+        mode: delta
+        horizon: 288
+      tag: delta
+    #ylim computation so delta plot is centered around 0, does not work yet since plt does not like DataArrays.
+    - np.abs: [!dag_prev ]
+    - max: [!dag_prev ]
+      tag: delta_y_lim_high
+    - neg: [!dag_prev ]
+      tag: delta_y_lim_low
+  helpers:
+    setup_figure:
+      ncols: 1
+      nrows: 2
+      sharex: true
+
+    set_suptitle:
+      title: Real data vs model simulation using estimated parameters
+
+    set_labels:
+      x: Time
+      only_label_outer: false
+  to_plot:
+    [0, 0]:
+      - function: plt.plot
+        args:
+          - !dag_result time_coords
+          - !dag_result data
+        label: [true_data, simulated]
+      - function: [matplotlib.pyplot, ylabel]
+        args: [inside temperature (°C)]
+      - function: [matplotlib.pyplot, legend]
+    [0, 1]:
+      - function: plt.plot
+        args:
+          - !dag_result time_coords
+          - !dag_result delta
+        label: [simulation - true_data, mae]
+      - function: [matplotlib.pyplot, ylabel]
+        args: [derivation of the simulation (°C)]
+      - function: [matplotlib.pyplot, legend]
+
+  compute_only: []
+
+training_data:
+  based_on:
+    - .creator.universe
+    - .plot.facet_grid.line
+  universes: first
+  select:
+    data: RC_data
+  x: time
+  col: kind
+  col_wrap: 2
+  sharey: False
+
+# only works with RC and EffWin, will fail silently otherwise
+# plot the joint of R and C
+joint:
+  based_on:
+    - .creator.multiverse
+    - .plot.facet_grid.pcolormesh
+  select_and_combine:
+    fields:
+      parameters: parameters
+      loss:
+        path: loss
+  transform:
+    # Divide the loss by the median to prevent numerical underflow
+    - .median: [!dag_tag loss, 'batch']
+    - div: [!dag_tag loss, !dag_prev ]
+    - neg_exp: [!dag_prev ]
+      tag: probabilities
+    # Flatten the prob and parameter samples into a single dimension
+    - flatten_dims_except: [!dag_tag probabilities , parameters, sample]
+      tag: prob
+    - flatten_dims_except: [!dag_tag parameters , parameters, sample]
+      tag: params
+
+    # Compute the joint
+    - joint_2D_ds: [!dag_tag params, !dag_tag prob]
+      kwargs:
+        x: R
+        y: C
+      tag: data
+  x: R
+  y: C
+  #cmap:
+  #  <<: *cmap
+  cbar_kwargs:
+    label: ~
+  style:
+    figure.figsize: [!dag_result half_width, !dag_result half_width]
+  

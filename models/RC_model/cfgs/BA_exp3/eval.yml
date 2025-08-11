@@ -1,0 +1,17 @@
+loss:
+  based_on: loss
+  style:
+    figure.figsize: [ !dag_result full_width, !dag_result third_width ]
+
+training_data:
+  based_on:
+    - .creator.universe
+    - .plot.facet_grid.line
+  universes: first
+  select:
+    data: RC_data
+  x: time
+  col: kind
+  col_wrap: 2
+  sharey: False
+  

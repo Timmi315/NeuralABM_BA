@@ -1,0 +1,65 @@
+# Plot the training and prediction loss
+loss:
+  based_on: loss
+
+# Plot the marginal degree distribution
+degree_distribution:
+  based_on: degree_distribution_uni
+  dag_options:
+    define:
+      n_bins: 200
+      range:
+        - list: [[0, 50]]
+  # Get the distribution statistics
+  transform:
+    - marginal_distribution: [!dag_tag predictions, !dag_tag probabilities, !dag_tag true_data]
+      file_cache:
+        read: True
+        write: True
+      tag: data
+  x: x
+  y: y
+  yerr: yerr
+  hue: type
+  linestyle: [solid, dotted]
+  smooth_kwargs:
+    enabled: True
+    sigma: 0.5
+  helpers:
+    set_limits:
+      x: [5, 40]
+    set_labels:
+      x: Weighted degree $k$
+      y: $P(k)$
+    set_legend:
+      title: ''
+  style:
+    figure.figsize: [!dag_result half_width, !dag_result quarter_width]
+
+# Plot the marginal triangle distribution
+triangle_distribution:
+  based_on:
+    - degree_distribution
+    - triangle_distribution_uni
+  dag_options:
+    define:
+      range:
+        - list: [[0, 30]]
+  transform:
+    - marginal_distribution: [!dag_tag predictions, !dag_tag probabilities, !dag_tag true_data]
+      file_cache:
+        read: True
+        write: True
+      tag: data
+  helpers:
+    set_legend:
+      use_legend: False
+    set_limits:
+      x: [0, 30]
+    set_labels:
+      x:
+        label: Weighted triangle count $t$
+#        fontsize: 3
+      y:
+        label: $P(t)$
+        fontsize: 7

@@ -1,0 +1,10 @@
+# Default plots for the Harris-Wilson model
+---
+# Plot the evolution of the training loss
+loss:
+  based_on: loss
+
+# Plot the parameter predictions
+predictions:
+  based_on: predictions_uni
+  col_wrap: 2

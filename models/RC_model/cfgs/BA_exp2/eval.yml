@@ -1,0 +1,233 @@
+# Loss for each run
+loss:
+  based_on:
+    - .creator.multiverse
+  creator: multiverse
+  module: dantro.plot.funcs
+  plot_func: multiplot
+  select_and_combine:
+    fields:
+      loss_multi: loss
+  transform:
+    - print: [!dag_tag loss_multi]
+    - flatten_dims_except: [!dag_tag loss_multi, batch, uni]
+      tag: loss
+    - .coords: [!dag_prev ]
+    - getitem: [!dag_prev , batch]
+    - .data: [!dag_prev ]
+      tag: x
+  to_plot:
+    - function: plt.semilogy
+      args:
+        - !dag_result x
+        - !dag_result loss
+  compute_only: [] #something about multiplot not liking data input through that interface
+  alpha: 0.2
+  helpers:
+    set_labels:
+      x: Batch
+      y: Training loss
+    set_legend:
+      use_legend: False
+
+# plot the simulation of all parametrized models, the residuals and a bar plot of the overall MAE (colored) and RMSE (grey)
+model_pred:
+  based_on:
+    - .creator.multiverse
+  creator: multiverse
+  module: dantro.plot.funcs
+  plot_func: multiplot
+  select_and_combine:
+    fields:
+      parameters: parameters
+      loss: loss
+      dt:
+        path: parameters
+        transform:
+          - .attrs
+          - getitem: [!dag_prev , dt]
+      rc_data: RC_data
+  transform:
+      # format probabilites into 1D-array and broadcast it with loss
+    - .attrs: [!dag_tag parameters]
+    - getitem: [!dag_prev , model_type]
+    - myprint: [!dag_prev ]
+    - pad_array: [[!dag_prev ], 32]
+    - myprint: [!dag_prev ]
+      tag: model_type
+    - neg_exp: [!dag_tag loss ]
+    - dims2list: [!dag_prev , path]
+    - dims2list: [!dag_prev , type]
+      tag: probabilities
+    - dims2list: [!dag_tag parameters, path]  # separate for major bar plot groups
+    - dims2list: [!dag_prev , type]                 # seperate for bars in smallest groups
+      tag: params_list
+    - dims2list: [!dag_tag rc_data, path]     # -"-
+    - dims2list: [!dag_prev , type]
+      tag: rc_data_list
+    # format probabilites into 1D-array and broadcast it with loss
+    - flatten_dims_except: [!dag_tag probabilities , parameters, sample]
+      tag: prob
+    - flatten_dims_except: [!dag_tag params_list , parameters, sample]
+      tag: params
+    - broadcast: [!dag_tag params, !dag_tag prob]
+
+    # Get the marginals along the parameters
+    - marginal_from_ds: [!dag_prev ]
+      kwargs:
+        x: x
+        y: loss
+        exclude_dim: [parameter]
+      tag: marginals
+
+    # select time array from data
+    - .coords: [!dag_tag rc_data, time]
+    - mul: [!dag_prev , !dag_tag dt]
+    - select_first_uni_time_coords: [!dag_prev ]
+      tag: time_coords
+
+    # create bar x coords
+    - bar_plot_groups: [[8, 4]]
+      tag: bar_x
+    - add: [[0.8, 1, 1.2, 1.4] , [2,3,4,5,6,7,8]]
+      tag: bar_ticks_x
+
+    #create bar colour array
+    - pad_array: [[!dag_tag c_darkblue, !dag_tag c_purple, !dag_tag c_orange, !dag_tag c_yellow]]
+    - repeat_array: [!dag_prev , 8]
+      tag: bar_colors
+
+    #- get_model_types_from_multiverse: [!dag_tag parameters]
+    - add: [[Adam, mlp-single, mlp, lstm] , [a,b,c,d] ]
+      tag: bar_ticks
+
+    # simulate the model data
+    - simulate_model: !dag_tag marginals
+      kwargs:
+        model_type: !dag_tag model_type
+        dt: !dag_tag dt
+        rc_data: !dag_tag rc_data_list
+        horizon: 288
+      tag: simulation
+    - getitem: [!dag_tag simulation, 0]
+      tag: data
+    - getitem: [!dag_tag simulation, 1]
+      tag: delta
+    - getitem: [!dag_tag simulation, 2]
+      tag: maes  
+    - getitem: [!dag_tag simulation, 3]
+      tag: rmses
+    #ylim computation so delta plot is centered around 0, does not work yet since plt does not like DataArrays.
+    - np.abs: [!dag_prev ]
+    - max: [!dag_prev ]
+      tag: delta_y_lim_high
+    - neg: [!dag_prev ]
+      tag: delta_y_lim_low
+  helpers:
+    setup_figure:
+      ncols: 1
+      nrows: 3
+      sharex: false
+      figsize: [10, 5]
+
+    set_suptitle:
+      title: Real data vs model simulation using estimated parameters
+
+  to_plot:
+    [0, 0]:
+      - function: plt.plot
+        args:
+          - !dag_result time_coords
+          - !dag_result data
+        #label: !dag_result comp_labels
+        alpha: 0.2
+      - function: [matplotlib.pyplot, ylabel]
+        args: [inside temperature (°C)]
+      #- function: [matplotlib.pyplot, ylim]
+      #  args: [-100, 100]  # Set your desired min/max y-axis range here
+      - function: [matplotlib.pyplot, xlabel]
+        args: [Time/s]
+      #- function: [matplotlib.pyplot, legend]
+    [0, 1]:
+      - function: plt.plot
+        args:
+          - !dag_result time_coords
+          - !dag_result delta
+        #label: !dag_result delta_labels
+        alpha: 0.2
+      - function: [matplotlib.pyplot, ylabel]
+        args: [derivation of the simulation (°C)]
+      #- function: [matplotlib.pyplot, ylim]
+      #  args: [-10, 10]
+      - function: [matplotlib.pyplot, xlabel]
+        args: [Time/s]
+      #- function: [matplotlib.pyplot, legend]
+    [0, 2]:
+      - function: plt.bar
+        args:
+          - !dag_result bar_x
+          - !dag_result rmses
+        width: 0.3
+        color: "lightgray"
+        zorder: 1
+      - function: plt.bar
+        args:
+          - !dag_result bar_x
+          - !dag_result maes
+        width: 0.2
+        color: !dag_result bar_colors
+        zorder: 2
+      - function: [matplotlib.pyplot, yscale]
+        args: ["log"]     # ← This line sets log scale
+      - function: [matplotlib.pyplot, ylim]
+        args: [0, 100]  # Set your desired min/max y-axis range here
+      - function: [matplotlib.pyplot, xticks]
+        args: [!dag_result bar_ticks_x, [Adam, mlp-single, mlp, lstm, synthRamp, sythTP, synthPRBS, synthPNoise, ds1, ds2, ds3]]
+      - function: [matplotlib.pyplot, xlabel]
+        args: [dataset]
+      - function: [matplotlib.pyplot, ylabel]
+        args: [MAE]
+
+
+  compute_only: []
+
+
+marginals_lstm_ds2:
+  based_on:
+    - .creator.multiverse
+    - .plot.facet_grid.density
+  select_and_combine:
+    fields:
+      parameters: parameters
+      loss: loss
+    subspace:
+      type: mlp
+      path: data/RC_model/ds3-5MinPRBS1-formatted.csv
+
+  transform:
+    # Divide the loss by the median to prevent numerical underflow
+    - .median: [!dag_tag loss, 'batch']
+    - div: [!dag_tag loss, !dag_prev ]
+    - neg_exp: [!dag_prev ]
+      tag: probabilities
+
+    # Flatten the prob and parameter samples into a single dimension
+    - flatten_dims_except: [!dag_tag probabilities , parameters, sample] # not executed?
+      tag: prob
+    - flatten_dims_except: [!dag_tag parameters , parameters, sample]
+      tag: params
+    - broadcast: [!dag_tag params, !dag_tag prob]
+
+    # Get the marginals along the parameters
+    - marginal_from_ds: [!dag_prev ]
+      kwargs:
+        x: x
+        y: loss
+        exclude_dim: [parameter]
+      tag: data
+  c: !dag_result c_darkblue
+  x: x
+  y: y
+  col: parameter
+  sharex: False
+  sharey: False

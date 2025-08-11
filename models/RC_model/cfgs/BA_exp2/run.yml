@@ -1,0 +1,42 @@
+perform_sweep: True
+parameter_space:
+  seed: !sweep
+    default: 1
+    range: [120]
+  num_epochs: 100
+  RC_model:
+    Data:
+      dt: 300
+      load_from_dir:
+        path: !sweep
+          default: data/RC_model/ds3-5minPRBS1-formatted.csv
+          values:
+            - data/RC_model/synth_muc_win_5Min_2000_PControl.csv
+            - data/RC_model/synth_muc_win_5Min_2000_rampup.csv
+            - data/RC_model/synth_muc_win_5Min_2000_TwoPointControl.csv
+            - data/RC_model/synth_muc_win_5Min_1680_PRBS.csv
+            - data/RC_model/synth_muc_win_5Min_2000_PControl_noised.csv
+            #- C:/Users/Timo/Documents/SublimeProjects/NeuralABMBA/data/RC_model/MunichPI.csv #dt = 900s
+            - data/RC_model/ds1_formatted.csv
+            - data/RC_model/ds2_5min_formatted.csv
+            - data/RC_model/ds3-5MinPRBS1-formatted.csv
+            #- C:/Users/Timo/Documents/SublimeProjects/NeuralABMBA/data/RC_model/ds4_formatted.csv #dt = 900s
+        csv_keys: [T_in, T_out, heatPower, HGloHor]
+        effWinArea: 1
+        subset: 1440
+  #      #csv_keys: [thermalZone.TAir, weaBus.TDryBul, totalHeatingPower.y, weaDat.weaBus.HGloHor]
+    NeuralNet:
+      type: !sweep
+        default: lstm
+        values: [optimizer, mlp-single, mlp, lstm]
+      learning_rate: 0.002
+      lookback: 288
+  #    lookback: 100 #amount of timesteps input for param estimation. has to be < than batch_size due to implementation.  
+    Training:
+      sample_size: 288
+      model_type: EffWin
+
+
+# compare opt vs lstm vs mlp in: ramped heat data, PRBS1, normal, gaussian noise, builda, ds2, ds3, ds1
+
+
