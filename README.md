@@ -1,4 +1,5 @@
 # COPY OF Neural parameter calibration of ODEs and SDEs
+This repository contains the extension of NeuralABM that was built for my Bachelor's Thesis "Estimatin of a building energy system model using a Neural Network" submitted on Aug. 12th 2025.
 ### Thomas Gaskin
 ### [Source](https://github.com/ThGaskin/NeuralABM)
 I had to copy the whole repository due to issues with git lfs.
